@@ -13,6 +13,26 @@ npm run dev
 
 `npm run build` comprueba TypeScript y genera `dist/`. `npm run preview` sirve la compilación localmente.
 
+## Despliegue en GitHub Pages
+
+En **Settings → Pages → Build and deployment**, selecciona **GitHub Actions** como origen.
+El workflow `.github/workflows/deploy-pages.yml` compila y publica el sitio con cada push a `main`;
+también puede ejecutarse manualmente desde **Actions → Deploy to GitHub Pages → Run workflow**.
+La primera publicación requiere que el workflow esté en `main`.
+
+El sitio estará disponible en https://jofaval.github.io/oxxeo-building/.
+La compilación usa la ruta base proporcionada por GitHub Pages para que JavaScript, CSS y el
+favicon funcionen tanto bajo `/oxxeo-building/` como con un dominio personalizado.
+
+Para comprobar localmente la compilación con la ruta del repositorio:
+
+```sh
+npm run build -- --base /oxxeo-building/
+npm run preview
+```
+
+Abre la URL del servidor de preview con la ruta `/oxxeo-building/`.
+
 ## Explorar
 
 - Arrastrar o deslizar para orbitar; rueda o pellizco para acercar.
