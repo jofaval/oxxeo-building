@@ -169,7 +169,10 @@ export function createViewer(host: HTMLElement) {
       camera.position.lerp(destination, reducedMotion ? 1 : 1 - Math.exp(-delta * 6))
       if (camera.position.distanceTo(destination) < 0.03) destination = null
     }
+    const autoRotate = controls.autoRotate
+    controls.autoRotate = autoRotate && destination === null
     controls.update(delta)
+    controls.autoRotate = autoRotate
     compass.style.transform = `rotate(${-THREE.MathUtils.radToDeg(controls.getAzimuthalAngle()) + 25}deg)`
     renderer.render(scene, camera)
   })
